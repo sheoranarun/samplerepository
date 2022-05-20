@@ -1,0 +1,2376 @@
+git and github
+
+module 1-----intro to git                                         (    git commit -am "message") add and commit.
+ -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ lecture 1 ------------ 3 stage architecture        (modify , stage and commit )
+             
+			  working directory                           staging area                        git directory
+                    <-----------------checkout project-----------------------------
+					
+                   -------stage files------------>
+
+																				----commit files---------->
+
+working directory is the current directory in which we are working . it contain our files  . say we are making a proj it contains various files
+ index.html  
+ contact.html (say it has some wrong information)
+ about.html
+ style.css
+ 
+ 
+ staging area     contain all the files which are going to be commited .which are going to get snapshotby git. files in this area when we commit will go to git.
+                          the files which contain some bug . should not be pushed in  staging area.
+						  the files which we really want to be taken snapshot(when we commit) should be in staging 
+						  only the files which are correct according to us and which we want to be taken snapshot (ie commit) should be here.
+ 
+ 
+ 
+ git directory       all commited files say v1,v2 (diff version)  git has to keep trackof each version  (changes we have done)  . it takes snapshot for current code and again when we change code when we commit.
+ 
+ 
+ 
+ open --- proj (in working directory) ---- push (stage files)-----staging area (files which we are sure are correct and which we want to commit  or taken snapshot)-----commit ---git directory(will take snapshots of files in staging area) . it keeps track of each version. (ie current code and when we commit any change)
+ 
+ 
+  -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+ lecture 2 -------          how git is diff from other version control system..
+  
+  git ---        is a distributed vcs.  (advantage of centralized vcs                and    local  vcs)
+  
+  git --       is open source. 
+                large community 
+				
+ git --       command line  GUI.  (easy to manage code ,write command)
+               heroku and github (both cloud based hoisting plat) uses git to work with their work flow.
+			   
+git  --- repository can be managed in efficient manner.
+
+ -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+   -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+   
+   
+   module 2    -version control system.
+   
+    -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	lecture 1 -       what is vcs?
+	
+	      VCS  is a practice of tracking and managing changes of soft code. it is also known as source control.
+			
+	     (say we made a proj .    then we made some changes in it . but then we realised it is not good. we want our older version . (will we remove all new elements manually )
+		 NO 
+		 what version control does is  it keeps track of all version . vcs can easily revert to prev version.                
+		 VCS keep snapshot of curret code and when we add new code take snapshot 
+		 it will remove new code/changes when we want to revert back to prev version
+		
+		 It is going to store Name(of person who is doing this) and timestampto keeep track of everything.
+		 
+		 VCS is a software which helps us managing the version control
+		 
+		 it allow to maintain code efficiently.
+		 
+		 it has 3 types             local centralized and distributed.
+		 
+		 
+ -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+ lecture 2 ------ local , centralized and distributed   VCS
+ 
+     
+	  LOCAL VCS   
+	   
+	   all changes done in file will be stored locally and will only be applicable on user's machinne
+	   
+	   changes are stored with time so as to keep track of when exactly changes are made.
+	   
+	   say code ->changes ->push       keeps track which changes was push at which timestamp   LOCALLY
+	   
+	   available only locally
+	   
+	   disadvantages----
+	                               what if hard disk is corrupted. proj can lost
+								    No other person can access.
+	
+	CENTRALISED VCS
+	
+	  In this there is only  central repository where all changes are made by multiple people
+	  
+	  multiple people can get the code from central repo and then push their changes onto the same repo
+	  
+	       say have 3 users    user1,user2,user3
+	                        |                                       |         ------------code------>
+							|										|		                                       user1 (make changes)
+                            |                                       |        <----------push---------
+							|										|		 
+							|	server(central repo )    |	      ------------code------>
+							|										|		                                       user2 (make changes)
+                            |                                       |        <----------push---------
+							|										|		 
+							|										|		 ------------code------>
+							|										|		                                       user3 (make changes)
+                            |                                       |         <----------push---------
+			
+		other people can see our change.	
+			
+	  disadvantages----
+	                            in case central repo is not available or server is down for some time no one will be able to get the code from the repo and push the changes.
+								
+								if the hard disk where central repo is stored gets corrupted then the entire history of project will be lost
+								
+								
+	DISTRIBUTED VCS
+	        in this user has their own copy of repository from central repo            (user1 ,each user gets a copy(of server) of repository , user will do changes in the copy ,, when its done he can push code back to central repo) 
+			                                                                                                    
+			even if central repo goes down user still has theri own copy of repo and they can continue working with that.
+			
+				       say have 3 users    user1,user2,user3
+	                        |                                       |         ------------code------>
+							|										|		                                        copy     ----------     user1 (make changes in the copy)
+                            |                                       |        <----------push---------
+							|										|		 
+							|	server(central repo )    |	      ------------code------>
+							|										|		                                         copy       ----------  user2 (make changes in the copy)
+                            |                                       |        <----------push---------
+							|										|		 
+							|										|		 ------------code------>
+							|										|		                                        copy       ------------- user3 (make changes in the copy)
+                            |                                       |         <----------push---------
+							
+							
+							
+		DIFFERENCE BW CENTRALISED AND DISTRIBUTED VCS
+
+     IN CENTRALISED THE USER WERE DIRECTLY WORKING ON CENTRAL REPO  IF SOMETHING WERE TO HAPPEN TO CENTRAL REPO NO  ONE WILL BE ABLE TO WORK ON PROJ
+
+     IN DISTRIBUTED THE USER GET COPY OF CENTRAL REPO(OR SERVER)  THEY CAN EASILY WORK EVEN WHEN CENTRAL REPO IS DOWN EASILY ON COPY OF REPO.	 
+							
+							
+		-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------				
+		-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------				
+		module 4 installl git
+		
+		git --version (to check version of git     , in cmdline)
+		
+		
+		---------------all these will be used in git bash----------------
+		$ git config --global user.name "Arun Sheoran"
+
+		$ git config --global user.email "sheoranarun1101@gmail.com"
+
+		$ git config --list        // list of which users are  using 
+	-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------				
+		module 3         command line basics
+
+     -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------				
+		
+       lecture 1           - -     change ,create file and directory,   list items
+		
+	 git bash is used for commands	
+		
+	  commandline does not have gui
+	  you have a set of command with we can do all operation which we do with buttons etc in gui button etc.
+	 set of commands do everything in cmdline
+	 it is the necessary topic tounderstand git
+	  
+	  1)  pwd              print working directory         ---we get ouput current working directory
+	  
+	  2) change directory
+	                                      (one way is to go to the folder then right click then git bash )
+										  or another way is to use this command.git
+	       
+		 cd <path>         change the directory to given path  ( ./)(means go to)               $ cd ./git          == $ cd git
+		 cd ..                    change directory to the prev directory ( ..) (means go to prev)           $ cd ..
+
+        
+		3) create directory                  (directory means folder)
+	     mkdir <name>                     make directory with given name (create a folder git in curr working dir)          $ mkdir git
+		 mkdir <name1> <name2>   create diff directory with given names                                                        $ mkdir gitfold1 gitfol2
+		 mkdir -p <folderout><folderin>       create  folder and then create a folder within that folder               $ mkdir -p gitnew/foldernew
+
+        4) list items
+		-->  ls                      list all items/files available in curr directory.
+		   
+		   for eg (my current dir was desktop) then it will give
+		   $ ls
+               POTD.url                   fsrnl.url                         'tutorial sites'/
+              'Visual Studio Code.lnk'*   gfg/                               udemy/
+              'cp moustafa saad'/        'project ideas'/
+               desktop.ini               'system design and coding games'/
+        
+		    (when curr dir was tutorial sites)
+			$ cd ./'tutorial sites'                ===   $ cd 'tutorial sites'
+			$ ls
+               'How to Become a JavaScript Developer- - GeeksforGeeks.url'
+               'My Home - Codecademy.url'
+               'The Modern JavaScript Tutorial.url'
+               'Web Development.url'
+               'Web technology for developers - MDN.url'
+                freecodecamp.url
+
+          -->  ls -l             (date and time will also appear on screen)
+		  
+		  --> ls -a             (we can see exact path)
+		  
+		  we can combine both
+		  
+		  --> ls -al               ( $ ls -al )          to see which path was created when .
+		  
+ -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------				
+      
+   lecture 2 -- -   remove file and directory ,copy and move directory.
+
+    1) create a file          
+   
+     touch <filename>               eg--   $ touch file.txt
+
+     2) delete a file
+	 
+	 rm <filename>             //if folder is same.         eg $ rm demo.txt
+                                          if folder is diff               eg  $ rm practice/practiceparent/practicechild/file.txt
+	 
+    3) delete a directory
+	
+	 rmdir <directoryname>          eg  $ rmdir practicechild
+         condition directoryshould be empty
+		 
+	                                     // if folder is diff         $ rmdir practice/practiceinside
+
+    4) copy files and directories   (for this i created folderdest(destination) source will be   )
+    
+     cp <src> <dest>          // copy file from src and paste in dest        eg:   $ cp gfg/samplefile.txt folderdest/newfile.txt            newfile.txt(is the name you give to the file)
+
+	 
+	 cp -R <src> <dest>     // copy directory from src to dest               eg:   $ cp -R gfg/htmlwale folderdest/newfolder             gfg me se htmlwale folder  folderdest(folder) me newfolder(name you give to folder) naam se paste ho gya
+
+    5) move file and directory(created sample(dest) and pracsource (as source))
+	
+    mv <src> <dest>                // move file from src to dest. (here file was on desk and dest was a dir on desk)   as newname.txt             $ mv textfileondesktop.txt sample/newname.txt
+                                              
+											  //  move file form pracsource/gfg/randomtext.txt to sample (dir) on desktop                    $ mv pracsource/gfg/randomtext.txt sample
+
+     in case of move          //    move directory from one dir to another                                                                             $ mv pracsource/gfg sample/newfolder
+
+	 command is same for file and dir both      (no need of -R)
+	
+	
+		-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------				
+		-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------				
+		                                                module 5           git basics
+		-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------				
+		-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------				
+	
+	       lecture 1 --         initializing a git repository
+		   
+		    git init
+             this is the only command.
+             it makes /initialize a git repository for you.
+             after that you can run any git command 
+             it is the very first command you will use.
+
+            ways
+            1) initialize a new ,empty  git repository.
+            2) converting an existing , unversioned project to a git repository.
+
+     executing    git init creates a    .git  subdirectory in the current working directory. which contain all of the necessary Git metadata for the new repository.       (.git subdirectory is hidden by default)
+
+       what is Git metadata --    it is the data containg all the version of repository or all the commands we are using all those data related to git will be stored in .git subdirectory.
+ 
+      (say i am in D://)
+	   go to the folder 
+	   open git bash
+	   run command      $  git init                 Initialized empty Git repository in D:/Git-Github/.git/
+       it is hidden by default // unhide it(.git)
+	   this directory(subfolder) will contain all the necessary metadata related to git.
+	   -- if we delete this . this will no more be a git repository.
+	   
+	   if we go to any folder which is having some proj.
+	   and run git init command which create .git directory
+	   we have converted an existing unversioned project to git repository.
+	
+	
+	----------------------------------------------------------------------------------------------------------------
+	
+	                  lecture 2   -  adding files and commiting to repository.
+	 
+	    1) Git Add
+		 adds file/folder to staging area
+		 command
+							 Git add filename
+		  git add --all                 all these 3 commands are same. most people use last one. they send all files from working area to staging area at once.
+          git add -A
+          git add .		  
+	
+	      how git commit works
+		  Adds staged changes to local repository.
+		  command
+							Git commit
+							
+							Git commit -m "message"              // this message should be crisp clear and short as project may contain thoursands of commit so it should be clear short etc.
+							
+							eg -
+							1.txt 2.txt 3.py create in D:/    Git-Github directory.
+							
+							$ git add .                                              //  added all directories to staging area.
+							$ git commit -m "initial files"                 //   commiting the staged files. (take staged changes to git repo)
+                            [master (root-commit) d58a6f8] initial files                    // this appears         3 files changed means 3 files were in the stage area which were commited.  0 insertion 0 deletion means nothing in files has been added or deleted.
+                             3 files changed, 0 insertions(+), 0 deletions(-)
+                             create mode 100644 1.txt
+                             create mode 100644 2.txt
+                             create mode 100644 3.py
+
+----------------------------------------------------------------------------------------------------------------------
+ lecture 3  -     repository (history and status)
+ 
+                status      of staged area
+				history     of commits.
+	
+	git status     -- command to check status of staged area.
+	                               // we created 2.cpp 3.java and added them to staged. 
+								   then checked status of staged area.
+	$ git status 
+	On branch master
+    Changes to be committed:                                      //yet to be commited
+       (use "git restore --staged <file>..." to unstage)
+            new file:   2.cpp
+            new file:   3.java
+
+     $ git commit -m "adding 2 new files"                       //commit
+    [master 5edb5be] adding 2 new files
+       2 files changed, 0 insertions(+), 0 deletions(-)
+       create mode 100644 2.cpp
+       create mode 100644 3.java
+
+if now we check status of staged area 
+       then we will have nothing to commit .working tree clean.
+	   
+	   
+	   CHECK THE HISTORY OF COMMIT.        (ie when we take data from the stage area to local repository)
+	   command :      git log
+	   
+	   
+	   $ git log
+       commit 5edb5bee892de2ab4c43f117de7f7418689851a3 (HEAD -> master)
+       Author: Arun Sheoran <sheoranarun1101@gmail.com>
+       Date:   Tue May 17 17:53:42 2022 +0530
+       
+           adding 2 new files
+       
+       commit d58a6f8a56aa658b6cf575526842eaff2801169f
+       Author: Arun Sheoran <sheoranarun1101@gmail.com>
+       Date:   Tue May 17 17:36:08 2022 +0530
+       
+           initial files
+
+NOW  created 4.txt 5.cpp                
+ added 4 to staging
+ if now we check status  //it is
+     $ git status
+     On branch master
+     Changes to be committed:                                             //it means staging area.
+       (use "git restore --staged <file>..." to unstage)
+             new file:   4.txt
+     
+     Untracked files:
+       (use "git add <file>..." to include in what will be committed)
+             5.cpp
+
+
+if we commit this then staging area will be empty but 
+we will still have untracked file.
+
+now check log-----for all history of commits.
+
+$ git log  
+
+-----------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------
+                module 6 -       branching
+-----------------------------------------------------------------------------------------------------------
+
+lecture 1 -  what is branching and why do we need it?
+
+git is like a tree has some main branch (Master branch)
+
+ we made some commits on master brach. 
+  
+                       |->          c4          brach1   (this branch has c1,c2,c4 commits)
+   c1   ->   c2   | ->        c3        master     (master branch has c1,c2,c2 commits)
+
+Default branck in git is Master branch.
+
+how braching help?
+
+        try a new feature        (which may /may not work ) so we can diverge from master brach and make a new brach    if it works fine we can merge otherwise we can go to org.
+		
+		collaboration             (say a,b,c) 3 person we don't know they will work good or not
+		                                  we let them do work on their seperate brach.
+										  a,b did not good (delete their brach)
+		                                  c did good (changes commited by c  can be merged to master) and it is very benificial.
+										  
+		
+
+-----------------------------------------------------------------------------------------------------------
+lecture 2            ----- how to create braches and switch bw branches?
+
+create branch:       // we can create branch only if we have already commit the changes to master branch.
+   
+        git brach <branch name>                       //will create a brach from master branch.
+		
+switching branch:
+
+       git checkout <branch name>                    // move head pointer from master to branch.
+	   
+	   
+
+#    	   git checkout -b <brach name>             // this will create a branch from master branch and move head pointer to it.
+
+//      master dir will have only the files which we have commited to it only
+//     similarly the new branch  will have its files
+
+                       |->          c4          brach1   (this branch has c1,c2,c4 commits)            when we ($ git checkout branch1 )branch 1 will have  c1,c2,c4
+   c1   ->   c2   | ->        c3        master     (master branch has c1,c2,c2 commits)                       ($ git checkout master)  master branch will have c1,c2,c3.
+   
+   
+   in this ex    we created new_branch , branch2          
+    -==========================================================================================
+	lecture 3  branch logging and deleting
+	
+	command : 
+	    git branch -d <branch name>           //error if branch is not fully merged.
+		
+		force delete branch
+		git branch -D <branch name>           
+
+eg             $ git branch -d new_branch
+                 error: The branch 'new_branch' is not fully merged.
+                 If you are sure you want to delete it, run 'git branch -D new_branch'.
+		
+	
+                $ git branch -D new_branch
+                Deleted branch new_branch (was f6fa3eb).	
+				
+eg          when we are already in this branch and trying to delete this branch (where the head pointer will go so that it does not get del)
+              $ git branch -d branch2
+              error: Cannot delete branch 'branch2' checked out at 'D:/Git-Github'	
+
+             // so to delete it we have to switch to another branch (here say master)
+
+         		$ git checkout master               
+                Switched to branch 'master'
+				 
+				 //now we can delete branch2.
+				 
+				$ git branch -d branch2
+                Deleted branch branch2 (was b563998).
+ 
+now this directory will not have either branch (new_branch , branch2);
+$ git checkout branch2
+error: pathspec 'branch2' did not match any file(s) known to git
+
+$ git checkout new_branch
+error: pathspec 'new_branch' did not match any file(s) known to git
+
+--------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------
+                                                 module -7  merging
+--------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------
+lecture 1       (basic merging and recursive merging)
+
+             merging --        say if we want features which we commited in a brach in our master brach then we merge these.
+			                                               
+														                  head (new branch)
+														                      |
+			                                              | ->  m1 -> m2     (new branch)    
+			                                              |
+								   c1 ->  c2 ->  c3  -> c4  -> c5      (master branch)
+																		     | 
+																			head (master)
+																			
+		by merging  m1, m2 will be added after head(master)  and new head master will be ((head)new branch).
+	
+           this will merge newbranch in main branch.
+		   
+	command:
+
+            git  merge  newbrach              // run this command in master brach	
+			                                               //head will now point to most recent commit of newbranch
+														  
+														  
+eg :-        simple merging
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/merge (master)
+$ git add .
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/merge (master)
+$ git commit -m "first commit"
+[master (root-commit) 39fbca1] first commit
+ 1 file changed, 1 insertion(+)
+ create mode 100644 index.html
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/merge (master)
+$ git checkout -b main
+Switched to a new branch 'main'
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/merge (main)
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/merge (main)
+$ git commit -m "first in contact"
+[main 8859b11] first in contact
+ 1 file changed, 1 insertion(+)
+ create mode 100644 contact.html
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/merge (main)
+$ git checkout master
+Switched to branch 'master'
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/merge (master)
+$ git merge main
+Updating 39fbca1..8859b11
+Fast-forward
+ contact.html | 1 +
+ 1 file changed, 1 insertion(+)
+ create mode 100644 contact.html
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/merge (master)
+$ git log --oneline
+8859b11 (HEAD -> master, main) first in contact
+39fbca1 first commit
+-------------------------------------
+   RECURSIVE MERGING.
+   command :
+    git merge <brach>              // command is same for both but working is diff.
+	
+	
+							     								                  
+								    						                      main -head
+main			                                        | ->  m1 -> m2        
+			                                                |                                                   we merged both these
+master							   c1 ->  c2 ->  c3  -> c4  -> c5      
+							       							|				     master -head
+							      							|					
+															|				
+feature	                                                |->m1 ->m2
+
+in this case git is going to check recursivly what changes have taken place till that point and merge them 
+recursive strategy is used to find teh common point here c3
+
+    when main and master merged         master -head will be main -head 
+	when feature will be merged            master -head will be features -head.
+	
+	
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/merge (master)
+$ git add .
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/merge (master)
+$ git commit -m "first commit"
+[master (root-commit) 39fbca1] first commit
+ 1 file changed, 1 insertion(+)
+ create mode 100644 index.html
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/merge (master)
+$ git checkout -b main
+Switched to a new branch 'main'
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/merge (main)
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/merge (main)
+$ git commit -m "first in contact"
+[main 8859b11] first in contact
+ 1 file changed, 1 insertion(+)
+ create mode 100644 contact.html
+$ git add .
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/merge (feature)
+$ git commit -m "first in about"
+[feature 1b8f02e] first in about
+ 1 file changed, 1 insertion(+)
+ create mode 100644 about.html
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/merge (feature)
+$ git checkout master
+Switched to branch 'master'
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/merge (master)
+$ git add .
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/merge (master)
+$ git commit -m "second"
+[master e380979] second
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/merge (master)
+$ git merge feature
+Merge made by the 'ort' strategy.                                                        //ort strategy is updated version of recursive but it fixes a lot of bugs.
+ about.html | 1 +
+ 1 file changed, 1 insertion(+)
+ create mode 100644 about.html
+ 
+ HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/merge (master)
+$ git log --oneline
+8e09c0a (HEAD -> master) Merge branch 'feature'
+e380979 second
+1b8f02e (feature) first in about
+8859b11 (main) first in contact
+39fbca1 first commit
+
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+lecture 2  : merge conflict 
+
+merge conflict in and event taht occur when git is unable to automaticcally resolve diff in colde b2 2 commits.
+
+eg    if master contain  index.html       and main also contain index.html
+                                     5 lines                                                 5 lines 
+									 slightly different 
+									 if we commit both
+									 
+									 there is a conflict 
+									 what to be added in the final merging .
+									 git cannot resolve itself the diff bw these 2.
+									 
+eg:
+
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/merge (master)
+$ git add .
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/merge (master)
+$ git commit -m "first commit"
+[master (root-commit) 39fbca1] first commit
+ 1 file changed, 1 insertion(+)
+ create mode 100644 index.html
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/merge (master)
+$ git checkout -b main
+Switched to a new branch 'main'
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/merge (main)
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/merge (main)
+$ git commit -m "first in contact"
+[main 8859b11] first in contact
+ 1 file changed, 1 insertion(+)
+ create mode 100644 contact.html
+$ git add .
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/merge (feature)
+$ git commit -m "first in about"
+[feature 1b8f02e] first in about
+ 1 file changed, 1 insertion(+)
+ create mode 100644 about.html
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/merge (feature)
+$ git checkout master
+Switched to branch 'master'
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/merge (master)
+$ git add .
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/merge (master)
+$ git commit -m "second"
+[master e380979] second
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/merge (master)
+$ git merge feature
+Merge made by the 'ort' strategy.
+ about.html | 1 +
+ 1 file changed, 1 insertion(+)
+ create mode 100644 about.html
+
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/merge (master)
+$ git checkout master
+Already on 'master'
+M       index.html
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/merge (master)
+$ git add .
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/merge (master)
+$ git commit -m "fourth"
+[master b52d013] fourth
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/merge (master)
+$ git checkout -b conflict
+Switched to a new branch 'conflict'
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/merge (conflict)
+$ git add .
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/merge (conflict)
+$ git commit -m "conflict"
+[conflict 81c552a] conflict
+ 1 file changed, 2 insertions(+)
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/merge (conflict)
+$ git checkout master
+Switched to branch 'master'
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/merge (master)
+$ git add .
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/merge (master)
+$ git commit -m "fifth"
+[master 59e2bac] fifth
+ 1 file changed, 1 insertion(+)
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/merge (master)
+$ git merge conflict
+Auto-merging index.html
+CONFLICT (content): Merge conflict in index.html
+Automatic merge failed; fix conflicts and then commit the result.
+
+
+what we did           in master  created index.html and in conflict we put something in index.html
+                              in master index.html we write something diff 
+							  when we merge there is a conflict.
+							  git is unable to decide which change we want 
+							  so merging failed.
+							  
+--------------------------------------------------------------------------------------------------------
+lecture 3 -     resolving conflict
+
+in VS code         we will be able see the conflict (ie current change and incoming change)
+                       in other      software it will not be visible
+					   
+in VS  the conflict is visible and we can simply remove the things which we don't want 	from the file which has merge conflict	
+
+and then 	
+
+$ git add .
+
+$ git commit        //you can write msg if you want.
+
+///////////////////////
+ then this will appear
+ 
+ 
+# Conflicts:
+#       index.html
+#
+# It looks like you may be committing a merge.
+# If this is not correct, please run
+#       git update-ref -d MERGE_HEAD
+# and try again.
+
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+<op/merge/.git/COMMIT_EDITMSG [unix] (09:25 18/05/2022)1,1 Top<sktop/merge/.git/COMMIT_EDITMSG" [unix] 20L, 448B           m
+
+----------////////////-----------------/////////////////-------------///////////
+it merged the branch conflict 
+
+if you are satisfied with the msg
+simply press 
+   :wq           to exit.
+   
+   we can now check prev commits.
+   
+   $ git log --oneline
+   5f33ee5 (HEAD -> master) Merge branch 'conflict'
+   59e2bac fifth
+   81c552a (conflict) conflict
+   b52d013 fourth
+   8e09c0a Merge branch 'feature'
+   e380979 second
+   1b8f02e (feature) first in about
+   8859b11 (main) first in contact
+   39fbca1 first commit
+   
+   // this is how we resolve merge conflict
+   
+   ===============================================================================
+   ===============================================================================
+                                              module 8  -- rebasing
+   ==============================================================================
+       lecture 1        what is rebasing and how it is diff from merging.
+	   
+	   rebasing and merging both do the same thing 
+	   result output of both will be same
+	   
+	   
+	   But how the things work is different..
+	   in rebasing      base is changed.
+	   
+	   
+	------------this is rebasing working -----------------------   							    						                     
+main			                                |->  m1 -> m2        
+			                                        |                                                
+master							   c1 ->  c2 ->  c3 
+
+remove all the commit of main branch and paste it to last/latest commit of master branch
+
+master combined    c1 ->c2 ->c3 ->m1->m2
+
+-----------------this is merging working-----------------------
+
+      
+master							   c1 ->  c2 ->  c3       ->     c4
+											      |                         |
+ main			                              |->  m1 -> m2  -|
+ 
+ master combined        it has another commit say c4 (merge commit) which will having the commit of last commit of main branch and last commit of master branch.
+ 
+ ----------------------------------------------------------------------------------------
+         lecture 2 --         rebasing a branch
+		 
+		 command:              // we should be present inside the brach which is base (master default)                                 
+		  git rebase <branch_name>
+		  
+		  flow:
+		  master ek file bna (say index.html) ( c1, c2)
+		  create main branch  ek file bna (say contact .html) (m1,m2)
+		  master (c3)
+		  
+		   Now rebase both branches
+		   we should be in master branch.
+		   git rebase <nameof thebrach which we want to rebase in (this)master branch>
+		  
+		  Now the files of main branch will be avail in master branch with all the prev done commits.
+		  
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/rebasing (master)
+$ touch index.html
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/rebasing (master)
+$ git add .
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/rebasing (master)
+$ git commit -m "c1"
+[master (root-commit) f90056e] c1
+ 1 file changed, 1 insertion(+)  
+ create mode 100644 index.html   
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/rebasing (master)
+$ git log
+commit f90056e20de2ddcfa629f0cf06506ff10933cdba (HEAD -> maste
+Author: Arun Sheoran <sheoranarun1101@gmail.com>
+Date:   Wed May 18 12:18:18 2022 +0530
+
+    c1
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/rebasing (master)
+$ git add .
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/rebasing (master)
+$ git commit -m "c2"
+[master cfeba2d] c2
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/rebasing (master)
+$ git log
+commit cfeba2dd60610504734a6669f0e3a667ec09442c (HEAD -> maste
+Author: Arun Sheoran <sheoranarun1101@gmail.com>
+Date:   Wed May 18 12:19:28 2022 +0530
+
+    c2
+
+commit f90056e20de2ddcfa629f0cf06506ff10933cdba
+Author: Arun Sheoran <sheoranarun1101@gmail.com>
+Date:   Wed May 18 12:18:18 2022 +0530
+
+    c1
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/rebasing (master)
+$ git checkout -b main
+Switched to a new branch 'main'
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/rebasing (main)
+$ touch contact.html
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/rebasing (main)
+$ git add .
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/rebasing (main)
+$ git commit -m "m1"
+[main fb1bbe4] m1
+ 1 file changed, 1 insertion(+)
+ create mode 100644 contact.html
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/rebasing (main)
+$ git log
+commit fb1bbe4014093806d60b546d051a2c7eb430761f (HEAD -> main)
+Author: Arun Sheoran <sheoranarun1101@gmail.com>
+Date:   Wed May 18 12:21:16 2022 +0530
+
+    m1
+
+commit cfeba2dd60610504734a6669f0e3a667ec09442c (master)
+Author: Arun Sheoran <sheoranarun1101@gmail.com>
+Date:   Wed May 18 12:19:28 2022 +0530
+    m1
+
+    m1
+    m1
+
+commit cfeba2dd60610504734a6669f0e3a667ec09442c (master)
+Author: Arun Sheoran <sheoranarun1101@gmail.com>
+Date:   Wed May 18 12:19:28 2022 +0530
+
+    c2
+
+commit f90056e20de2ddcfa629f0cf06506ff10933cdba
+Author: Arun Sheoran <sheoranarun1101@gmail.com>
+Date:   Wed May 18 12:18:18 2022 +0530
+
+    c1
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/rebasing (main)
+$ git add .
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/rebasing (main)
+$ git commit -m "m2";
+[main 285c88d] m2
+ 1 file changed, 1 insertion(+)
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/rebasing (main)
+$ git log
+commit 285c88df52def5e8c5e4ad1fab95fda9f08713c6 (HEAD -> main)
+Author: Arun Sheoran <sheoranarun1101@gmail.com>
+Date:   Wed May 18 12:22:29 2022 +0530
+
+    m2
+
+commit fb1bbe4014093806d60b546d051a2c7eb430761f
+Author: Arun Sheoran <sheoranarun1101@gmail.com>
+Date:   Wed May 18 12:21:16 2022 +0530
+
+    m1
+
+commit cfeba2dd60610504734a6669f0e3a667ec09442c (master)
+Author: Arun Sheoran <sheoranarun1101@gmail.com>
+Date:   Wed May 18 12:19:28 2022 +0530
+
+    c2
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/rebasing (main)
+Switched to branch 'master'
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/rebasing (master)        
+$ git log
+commit cfeba2dd60610504734a6669f0e3a667ec09442c (HEAD -> master)
+Author: Arun Sheoran <sheoranarun1101@gmail.com>
+Date:   Wed May 18 12:19:28 2022 +0530
+
+    c2
+
+commit f90056e20de2ddcfa629f0cf06506ff10933cdba
+Author: Arun Sheoran <sheoranarun1101@gmail.com>
+Date:   Wed May 18 12:18:18 2022 +0530
+
+    c1
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/rebasing (master)        
+$ git add .
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/rebasing (master)        
+$ git commit -m "c3"
+[master 80a4979] c3
+ 1 file changed, 1 insertion(+)
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/rebasing (master)        
+$ git log
+commit 80a4979dffe846f114c0de7c5748fa870fe44d25 (HEAD -> master)
+Author: Arun Sheoran <sheoranarun1101@gmail.com>
+Date:   Wed May 18 12:26:16 2022 +0530
+
+    c3
+
+commit cfeba2dd60610504734a6669f0e3a667ec09442c
+Author: Arun Sheoran <sheoranarun1101@gmail.com>
+    c1
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/rebasing (master)        
+$ git rebase main
+Successfully rebased and updated refs/heads/master.
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/rebasing (master)        
+$ git log
+commit 9ad2d909f768acd31f8973dbd32bb60fe797c1b5 (HEAD -> master)
+Author: Arun Sheoran <sheoranarun1101@gmail.com>
+Date:   Wed May 18 12:26:16 2022 +0530
+
+    c3
+
+commit 285c88df52def5e8c5e4ad1fab95fda9f08713c6 (main)        
+Author: Arun Sheoran <sheoranarun1101@gmail.com>
+Date:   Wed May 18 12:22:29 2022 +0530
+
+    m2
+
+commit fb1bbe4014093806d60b546d051a2c7eb430761f
+Author: Arun Sheoran <sheoranarun1101@gmail.com>
+Date:   Wed May 18 12:21:16 2022 +0530
+
+    m1
+		  
+		  
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+		  lecture 3      adv and disadvantages of rebasing
+		  
+		  
+		  advantage:
+	#	  the log history looks more clean as every commit even the commits in other branch will be added together . so you can havae a look at all the commits of all 
+		  other branch together.
+		  ( but in merging the commit of 2 branches were merged into single commit so you can no loger have look at commit which were done in other branch.)
+		  
+		  disadvantages
+	#Never rebase commits that exist ouside you repository.
+
+    why ?
+ans:	
+	   
+   (someone else work on it)           main                                                  m1   ->     m2      ->     m3
+                                                   	                                                              |
+ (i am working on it )                      feature                                f1    ->   f2   ->     f3     ->     f4                                      
+                                                   							                       |
+  (reposit)                                      master    c1  ->   c2    ->    c3    ->    c4   ->   c5	   
+  
+  say i completed my feature and rebase it
+  what happens      all my commits   gets deleted and new similar commits (different id's) are added to end of master .
+  the person who is working on my branch will have a tough time to pull code and rebase .
+  
+  SO you should never rebase commits that exist outside your repository
+  NEVER REBASE OUTSIDE YOUR REPOSITORY.
+  
+  ===========================================================================================
+  module 9           reflog
+  =======================================================================================================
+  command :         git reflog
+  
+  it is basically the list of commits that HEAD has previously pointed to or you can say undo history of repository
+  
+it shows all the history till now (any command in git )   checkout branch merge etc sab kuch
+
+eg: 
+
+         HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/gitfolder
+         $ git init
+         Initialized empty Git repository in C:/Users/HP/Desktop/gitfolder/.git/       
+         
+         HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/gitfolder (master)
+         $ touch index.html
+         HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/gitfolder (master)
+         $ git commit -m "first"
+         [master (root-commit) e716660] first
+          1 file changed, 1 insertion(+)
+          create mode 100644 index.html
+         
+         HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/gitfolder (master)
+         $ git checkout -b main
+         Switched to a new branch 'main'
+         
+         HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/gitfolder (main)
+         $ touch contact.html
+         
+         HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/gitfolder (main)
+         $ git add .
+         
+         HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/gitfolder (main)
+         $ git commit -m "contact1"
+         [main 472f343] contact1
+          1 file changed, 1 insertion(+)
+          create mode 100644 contact.html
+         
+         HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/gitfolder (main)
+         $ git checkout master
+         Switched to branch 'master'
+
+         HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/gitfolder (master)
+         $ git log                                                                                                                                      //it only show the commit of current branch.
+         commit e716660341ecf3502027b80aeecd414f4ffd4bdd (HEAD -> master)
+         Author: Arun Sheoran <sheoranarun1101@gmail.com>
+         Date:   Wed May 18 18:33:40 2022 +0530
+         
+             first
+         
+         HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/gitfolder (master)
+         $ git reflog                                                                                                                             //(where ever the head is going it keeps the track of that)
+         e716660 (HEAD -> master) HEAD@{0}: checkout: moving from main to master
+         472f343 (main) HEAD@{1}: commit: contact1
+         e716660 (HEAD -> master) HEAD@{2}: checkout: moving from master to main       
+         e716660 (HEAD -> master) HEAD@{3}: commit (initial): first
+		 
+		 
+		 
+=============================================================================================================================		 
+                                                             module 10       stashing.
+=============================================================================================================================
+
+stashing :      takes modified tracked files, stages changes and saves them on a stack of unfinished changes that you can reapply at any time.
+                       
+					   you have index.html (master branch) commited it     and some contact.html in any branch(be it master or any other)  you write some code in it.
+                      now you want to go to index.html    but you have not commited contact.html 
+                   -->   one way is you can add the contact.html in staged area and commit the file so that changes i have made are saved.(so i can go anywhere when i come back i can work on it whenever i need)
+	               -->BUT IF SAY I AM NOT done with it
+                         and don't want to commit it
+                            there is a possibility that i might loose it
+                    STASHING is helpful
+                      when we apply stash  .it has a stack . in this it store all files with unfinished channges.
+                     it will remove the file for now . and it will put them on to a stack .
+                     for now this file will be deleted
+                       when i come back to it .
+                  when i apply a command i can get the file back (unfinished changes   means as it is file) can work on it again.					   
+                     BUT THERE IS ONE CONDITION FILE SHOULD BE IN STAGING AREA IE ( git add . )
+					 only then i can use           git stash         command.
+              
+
+command:     git stash
+
+eg: index.html     and contact.html(will be stashed)
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/stashingfolder
+$ touch index.html
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/stashingfolder
+$ git init
+Initialized empty Git repository in C:/Users/HP/Desktop/stashingfolder/.git/
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/stashingfolder (master)
+$ git add .
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/stashingfolder (master)
+$ git commit -m "first"
+[master (root-commit) e2711a7] first
+ 1 file changed, 1 insertion(+)
+ create mode 100644 index.html
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/stashingfolder (master)
+$ touch contact.html
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/stashingfolder (master)
+$ git add .
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/stashingfolder (master)
+$ git stash                                                                                                                           //file contact.html will be del but will be stored in stack due to git stash command
+Saved working directory and index state WIP on master: e2711a7 first
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/stashingfolder (master)         //commiting changes in index.html
+$ git add .
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/stashingfolder (master)
+$ git commit -m "second"
+[master 1ff5f44] second
+ 1 file changed, 1 insertion(+)
+ 
+ 
+ //////////////////          now how can we get it back 
+ 
+ git stash list                               --        gives list of all stashes                                            we can get this index from git stash list.
+ 
+ git stash apply stash@{}         -------to get back a particular stash ( eg    $ git stash apply stash@{1}          as it is a stack  it has some index.    stash@{0} ,stash@{1}, etc 
+ 
+ 
+ git stash drop stash@{}                ----       after we are done with this we can drop the stash as we will not need it again.
+ 
+ 
+////////////////         continued
+
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/stashingfolder (master)
+$ git stash list
+stash@{0}: WIP on master: e2711a7 first
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/stashingfolder (master)
+$ git stash apply stash@{0}                                                                                                        //now file will be available which previously was deleted
+On branch master
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        new file:   contact.html
+
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/stashingfolder (master)
+$ git add .                                                                                                                                //stage and commit it.
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/stashingfolder (master)
+$ git commit -m "first in contact"
+[master 453e7c3] first in contact
+ 1 file changed, 1 insertion(+)
+ create mode 100644 contact.html
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/stashingfolder (master)
+$ git stash list                                                                                                                           // check stassh list    if that stash is still present you can drop it as you have already commited the file
+stash@{0}: WIP on master: e2711a7 first
+
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/stashingfolder (master)
+$ git stash drop stash@{0}
+Dropped stash@{0} (ed8cd10f762b18effca6dace2b6f4d54a0fbf668)
+
+==========================================================================================================
+=========================================================================================================
+                     module 11 - extra tools
+===========================================================================================================
+===========================================================================================================
+lecture 1 -- cleaning the working repository
+ meaning : say we don't want to stash file we want to get rid of it , we can clean the branch.
+                 -f means force            -d means delete subdirectory or folder(recursively)
+
+command:     git clean -f -d      
+
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/GitFolder
+$ git init
+Initialized empty Git repository in C:/Users/HP/Desktop/GitFolder/.git/
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/GitFolder (master)
+$ git checkout -b main
+Switched to a new branch 'main'
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/GitFolder (main)
+$ touch index.html
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/GitFolder (main)
+$ touch about.html
+
+\\ we write somecode in the files. 
+\\ and these files are not in staging area
+// if these are not in staging area only then they can be cleared.
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/GitFolder (main)
+$ git clean -f -d
+Removing about.html
+Removing index.html
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+           lecture 2: change commit message  and content of previous commit.
+
+in case you commit files previously with a wrong msg . NOw want to update that msg in this case this command is helpful
+
+command:         git commit --amend
+
+(when we give this command   previous commit will appear in  VIEW EDITOR .   
+ you just have to write      I    in order to change the commit msg.
+  you can edit the commit msg appearing onscreen.       after changing  to go out of view editor                 esc :wq
+  
+
+
+one other way is to change the  file and commit again with new msg . Prob with it is that old commit will still be there.
+
+
+
+
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/GitFodler
+$ git init
+Initialized empty Git repository in C:/Users/HP/Desktop/GitFodler/.git/
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/GitFodler (master)
+$ touch index.html
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/GitFodler (master)
+$ git add .
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/GitFodler (master)
+$ git commit -m "first commit"
+[master (root-commit) d3ec8db] first commit
+ 1 file changed, 1 insertion(+)
+ create mode 100644 index.html
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/GitFodler (master)
+$ git log
+commit d3ec8db87c719196ef7853a8dee3bf5ce5ab7b58 (HEAD -> master)
+Author: Arun Sheoran <sheoranarun1101@gmail.com>
+Date:   Thu May 19 09:11:52 2022 +0530
+
+    first commit
+
+
+
+
+-----------------------------------------view editor appearing after    $ git commit --amend -----------------------------
+first commit
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# Date:      Thu May 19 09:11:52 2022 +0530
+#
+# On branch master
+#
+# Initial commit
+#
+# Changes to be committed:
+#       new file:   index.html
+#
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+C:/Users/HP/Desktop/GitFodler/.git/COMMIT_EDITMSG [unix] (09:12 19/05/2022)    1,1 All
+------------------------------------------------------------------------------------------------------------
+NOW when we press I           insert will appear at bottom     then we areallowed to change / write on screen.
+
+---------------------------------------------------------------------------------------------------------------
+File was created
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# Date:      Thu May 19 09:11:52 2022 +0530
+#
+# On branch master
+#
+# Initial commit
+#
+# Changes to be committed:
+#       new file:   index.html
+#
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+C:/Users/HP/Desktop/GitFodler/.git/COMMIT_EDITMSG[+] [unix] (09:12 19/05/2022)1,16 All
+:wq
+--------------------------------------------------------------------------------------------------------
+after escaping we willsee this.
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/GitFodler (master)
+$ git commit --amend
+[master 6b355eb] File was created
+ Date: Thu May 19 09:11:52 2022 +0530
+ 1 file changed, 1 insertion(+)
+ create mode 100644 index.html
+ 
+ HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/GitFodler (master)                                (can check in git log       msg is now updated)
+$ git log
+commit 6b355ebacdaa17b7d53b9f64066ccf7efcfa6654 (HEAD -> master)
+Author: Arun Sheoran <sheoranarun1101@gmail.com>
+Date:   Thu May 19 09:11:52 2022 +0530
+
+    File was created
+	
+	---------------------------------------------------------------------------------------------------------------------------------------====
+	====================we can only change the msg of latest commit say 
+	 if we created another file and added it to staged and commit.
+	 now we can change only the last added commits msg  Not any previous
+	 
+	 
+	 HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/GitFodler (master)
+$ git commit -m "second"
+[master 2f8a1e6] second
+ 1 file changed, 1 insertion(+)
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/GitFodler (master)
+$ git log
+commit 2f8a1e675272b7ff0848348391c38121b6da42bb (HEAD -> master)
+Author: Arun Sheoran <sheoranarun1101@gmail.com>
+Date:   Thu May 19 09:19:38 2022 +0530
+
+    second
+
+commit 6b355ebacdaa17b7d53b9f64066ccf7efcfa6654
+Author: Arun Sheoran <sheoranarun1101@gmail.com>
+Date:   Thu May 19 09:11:52 2022 +0530
+
+    File was created
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/GitFodler (master)
+$ git commit --amend
+[master 59bdd39] file was updated w  
+ Date: Thu May 19 09:19:38 2022 +0530
+ 1 file changed, 1 insertion(+)  
+ 
+ 
+ 
+ //////////////////////changing commit messages ( update the previous commit )   
+ 
+ update the content in file
+ Add file to staging area
+ use git commit --amend    command.
+ 
+ 
+ eg say in index.html we have an instruction    and 
+ we changed it to something  
+ then add to stagingh
+ then use the command 
+ 
+ previous commit will be available for updation (changing)
+ 
+ The change what we did will now be part of previous commit      not a new one.
+ 
+ ///////           $ git log --oneline              to see commits with id's
+ //////            $ git show <idofcommit>   to see all the conent of file
+ 
+ HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/GitFodler (master)
+$ git log --oneline
+587a097 (HEAD -> master) file was updated w
+6b355eb File was created
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/GitFodler (master)
+$ git show 587a097
+commit 587a097b0ca05c718a23baabe63be7a6b5df7912 (HEAD -> master)
+Author: Arun Sheoran <sheoranarun1101@gmail.com>
+Date:   Thu May 19 09:19:38 2022 +0530
+
+    file was updated
+    w
+
+diff --git a/index.html b/index.html
+index 10c8d0f..6ee2693 100644
+--- a/index.html
++++ b/index.html
+@@ -1 +1,2 @@
+ this is first commit.
++<p>updated commit</p>
+======================================================================================================
+                  lecture 3 :           checking past commits.
+				  
+				  by default head is at last commit 
+				  to check a past commit our head must be at that commit which we want to check.            (commits after head will not be accesible so after we are done we need to move our head to last commit )
+				  after that we will get back to the last commit 
+				  
+				  commit_id      can be found from                    $ git log --oneline
+				  
+				  
+	git checkout <commit_id>
+	
+	get switch -                                               // to get back to last commit
+
+
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/GitFolder
+$ git init
+Initialized empty Git repository in C:/Users/HP/Desktop/GitFolder/.git/
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/GitFolder (master)
+$ touch index.html
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/GitFolder (master)
+$ git add .
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/GitFolder (master)
+$ git commit -m "first"
+[master (root-commit) 702c13e] first
+ 1 file changed, 1 insertion(+)     
+ create mode 100644 index.html      
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/GitFolder (master)
+$ touch contact.html
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/GitFolder (master)
+$ git add .
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/GitFolder (master)
+$ git commit -m "first in contact"
+[master 56e1ee3] first in contact
+ 1 file changed, 1 insertion(+)
+ create mode 100644 contact.html
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/GitFolder (master)
+$ rm contact.html                                                                                       (removed the contact file and commited again    not contact.html will be deleted)
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/GitFolder (master)
+$ git add .
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/GitFolder (master)
+$ git commit -m "deleted contact"
+[master 4793268] deleted contact
+ 1 file changed, 1 deletion(-)
+ delete mode 100644 contact.html
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/GitFolder (master)
+$ git log
+commit 47932684d66f6008a8825fe82daf98236710e4e1 (HEAD -> master)
+Author: Arun Sheoran <sheoranarun1101@gmail.com>
+Date:   Thu May 19 09:40:09 2022 +0530
+
+    deleted contact
+
+commit 56e1ee315c829398c82c7b83b4fafb4701bfce8d
+Author: Arun Sheoran <sheoranarun1101@gmail.com>
+Date:   Thu May 19 09:38:57 2022 +0530
+
+    first in contact
+
+commit 702c13ed9a4a776f4e0b1475786822867d404b05
+Author: Arun Sheoran <sheoranarun1101@gmail.com>
+Date:   Thu May 19 09:38:17 2022 +0530
+
+    first
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/GitFolder (master)
+$ git log --oneline                                                                                                                                (head is at last commit       deleted contact)
+4793268 (HEAD -> master) deleted contact
+56e1ee3 first in contact
+702c13e first
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/GitFolder (master)
+$ git checkout 56e1ee3                                                                                                                            (checking out previous commit with commit id)
+Note: switching to '56e1ee3'.
+
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by switching back to a branch.   
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -c with the switch command. Example:    
+
+  git switch -c <new-branch-name>
+
+Or undo this operation with:
+
+  git switch -
+
+Turn off this advice by setting config variable advice.detachedHead to false
+
+HEAD is now at 56e1ee3 first in contact                                                                                                                          ( as head is at now first in contact  . contact.html is recovered)
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/GitFolder ((56e1ee3...))
+$ git log                                                                                                                                                                  (as head is now at "first in contact " commit we only have access to commits till now)
+commit 56e1ee315c829398c82c7b83b4fafb4701bfce8d (HEAD)
+Author: Arun Sheoran <sheoranarun1101@gmail.com>
+Date:   Thu May 19 09:38:57 2022 +0530
+
+    first in contact
+
+commit 702c13ed9a4a776f4e0b1475786822867d404b05
+Author: Arun Sheoran <sheoranarun1101@gmail.com>
+Date:   Thu May 19 09:38:17 2022 +0530
+
+    first
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/GitFolder ((56e1ee3...))
+$ git switch -                                                                                                                                         // moving head to last commit (now contact.html will be removed.
+Previous HEAD position was 56e1ee3 first in contact
+Switched to branch 'master'
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/GitFolder (master)
+$ git log
+commit 47932684d66f6008a8825fe82daf98236710e4e1 (HEAD -> master)
+Author: Arun Sheoran <sheoranarun1101@gmail.com>
+Date:   Thu May 19 09:40:09 2022 +0530
+
+    deleted contact
+
+commit 56e1ee315c829398c82c7b83b4fafb4701bfce8d
+Author: Arun Sheoran <sheoranarun1101@gmail.com>
+Date:   Thu May 19 09:38:57 2022 +0530
+
+    first in contact
+
+commit 702c13ed9a4a776f4e0b1475786822867d404b05
+Author: Arun Sheoran <sheoranarun1101@gmail.com>
+Date:   Thu May 19 09:38:17 2022 +0530
+
+    first
+
+
+	
+	
+	///////////////////////////       
+	
+	
+	
+	git switch -c <branch_name>                     if we move our head to bw and want to make some commits but these commits will not be added after head as there are already somecommits at taht place so we will create a new brach and write code their make commits their.
+	
+	                               c21 - c23      new branch
+	                                 |
+	 master             c1  - c2 - c3 -c4
+	                                 |
+									head
+									
+									////////////////////////////////////
+									
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/GitFolder (master)
+$ git checkout 56e1ee3                                                                                    move head to a commit contact.html wala first commti      
+Note: switching to '56e1ee3'.
+
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by switching back to a branch.   
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -c with the switch command. Example:    
+
+  git switch -c <new-branch-name>
+
+Or undo this operation with:
+
+  git switch -
+
+Turn off this advice by setting config variable advice.detachedHead to false
+
+HEAD is now at 56e1ee3 first in contact
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/GitFolder ((56e1ee3...))
+$ git add .                                                                                                                         made changes in contact.html and commit it.
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/GitFolder ((56e1ee3...))
+$ git commit -m "second in contact"
+[detached HEAD d9e5dc2] second in contact
+ 1 file changed, 1 insertion(+)									                                                        ###this commit can not be added in bw 2 already created commits so need to create a branch and swtich to it and add it to that branch.
+
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/GitFolder ((d9e5dc2...))         			                                                    //created a brach main and switch to it  
+$ git switch -c main
+Switched to a new branch 'main'
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/GitFolder (main)
+$ git log                                                        			                                                      			                       //this main branch will have all of master till present head and what we commited new in main
+commit d9e5dc2bfff8d2245dbe3df59027759fb9cd3c1d (HEAD -> main)
+Author: Arun Sheoran <sheoranarun1101@gmail.com>
+Date:   Thu May 19 09:55:42 2022 +0530
+
+    second in contact
+
+commit 56e1ee315c829398c82c7b83b4fafb4701bfce8d
+Author: Arun Sheoran <sheoranarun1101@gmail.com>
+Date:   Thu May 19 09:38:57 2022 +0530
+
+    first in contact
+
+commit 702c13ed9a4a776f4e0b1475786822867d404b05
+Author: Arun Sheoran <sheoranarun1101@gmail.com>
+Date:   Thu May 19 09:38:17 2022 +0530
+
+    first
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/GitFolder (main)
+$ git checkout master			                                                      			                                  //contact.html will be deleted in master and head is at latest of master commit
+Switched to branch 'master'
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/GitFolder (master)
+$ git log
+commit 47932684d66f6008a8825fe82daf98236710e4e1 (HEAD -> master)
+Author: Arun Sheoran <sheoranarun1101@gmail.com>
+Date:   Thu May 19 09:40:09 2022 +0530
+
+    deleted contact
+
+commit 56e1ee315c829398c82c7b83b4fafb4701bfce8d
+Author: Arun Sheoran <sheoranarun1101@gmail.com>
+Date:   Thu May 19 09:38:57 2022 +0530
+
+    first in contact
+
+commit 702c13ed9a4a776f4e0b1475786822867d404b05
+Author: Arun Sheoran <sheoranarun1101@gmail.com>
+Date:   Thu May 19 09:38:17 2022 +0530
+
+    first
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/GitFolder (master)
+$ git branch			                                                      			                                                      //check all the present branches and      go to any of them 
+  main
+* master
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/GitFolder (master)        			                                     // we can now work on main samajh gye kya.
+$ git checkout main
+Switched to branch 'main'
+
+
+========================================================================================================
+==========================================================================================================
+
+lecture 4: Git reset.
+
+Deletes the commits from top and reset head to given id (commit id)
+all commits after that id will be deleted   
+
+command :        
+   git reset <commit_id>                       //by default is soft( delete the commit but you can still get back the changes introduced in those deleted commits.
+   git reset <commit_id> --hard           // delete the commit and even the changes introduced in that commit.
+
+
+(say we give id 124)            then                              
+
+id                  123    124    125       126         127
+
+master            c1     c2      c3          c4          c5 
+                                                                     |
+														           head
+
+
+
+this will be final 
+
+id                  123    124    
+
+master            c1     c2 
+                                 |
+							  head
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/GitFolder
+$ git init
+Initialized empty Git repository in C:/Users/HP/Desktop/Gitfolder/.git/
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/GitFolder (master)
+$ touch index.html
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/GitFolder (master)
+$ git add .
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/GitFolder (master)
+$ git commit -m "firstindex"
+[master (root-commit) 3f2677c] firstindex
+ 1 file changed, 1 insertion(+)
+ create mode 100644 index.html
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/GitFolder (master)
+$ touch contact.html
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/GitFolder (master)
+$ git add .
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/GitFolder (master)
+$ git commit -m "firstcontact"
+[master 5e3a377] firstcontact
+ 1 file changed, 1 insertion(+)
+ create mode 100644 contact.html
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/GitFolder (master)
+$ git log
+commit 5e3a377135049eb681da48de2c97e070dc1bf88b (HEAD -> master)
+Author: Arun Sheoran <sheoranarun1101@gmail.com>
+Date:   Thu May 19 10:36:10 2022 +0530
+
+    firstcontact
+
+commit 3f2677c3178583618b9bc8517812fc05b1c143e6
+Author: Arun Sheoran <sheoranarun1101@gmail.com>
+Date:   Thu May 19 10:35:24 2022 +0530
+
+    firstindex
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/GitFolder (master)
+$ git add .
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/GitFolder (master)
+$ git commit -m "secondindex"
+[master 4f07dfb] secondindex
+ 1 file changed, 1 insertion(+)
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/GitFolder (master)
+$ git add .
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/GitFolder (master)
+$ git commit -m "thirdindex"
+[master 9a3a507] thirdindex
+ 1 file changed, 1 insertion(+)
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/GitFolder (master)
+$ git log
+commit 9a3a507bd8f23e99278dc2947a561e9e32a09d29 (HEAD -> master)
+Author: Arun Sheoran <sheoranarun1101@gmail.com>
+Date:   Thu May 19 10:38:08 2022 +0530
+
+    thirdindex
+
+commit 4f07dfbb2f14c88ab724e9c744f6ae5f0fc61662
+Author: Arun Sheoran <sheoranarun1101@gmail.com>
+Date:   Thu May 19 10:36:55 2022 +0530
+
+    secondindex
+
+commit 5e3a377135049eb681da48de2c97e070dc1bf88b
+Author: Arun Sheoran <sheoranarun1101@gmail.com>
+Date:   Thu May 19 10:36:10 2022 +0530
+
+    firstcontact
+
+commit 3f2677c3178583618b9bc8517812fc05b1c143e6
+Author: Arun Sheoran <sheoranarun1101@gmail.com>
+:...skipping...
+commit 9a3a507bd8f23e99278dc2947a561e9e32a09d29 (HEAD -> master)
+Author: Arun Sheoran <sheoranarun1101@gmail.com>
+Date:   Thu May 19 10:38:08 2022 +0530
+
+    thirdindex
+
+commit 4f07dfbb2f14c88ab724e9c744f6ae5f0fc61662
+Author: Arun Sheoran <sheoranarun1101@gmail.com>
+Date:   Thu May 19 10:36:55 2022 +0530
+
+    secondindex
+
+commit 5e3a377135049eb681da48de2c97e070dc1bf88b
+Author: Arun Sheoran <sheoranarun1101@gmail.com>
+Date:   Thu May 19 10:36:10 2022 +0530
+
+    firstcontact
+
+commit 3f2677c3178583618b9bc8517812fc05b1c143e6
+Author: Arun Sheoran <sheoranarun1101@gmail.com>
+Date:   Thu May 19 10:35:24 2022 +0530
+
+    firstindex
+~
+
+--------------------------///////////////////////------------------ say if we want to delete newly add commits we will get it of commit after which we want to delete all the commits..
+
+
+$ git log --oneline                                                                                            // for taking the commit id.
+9a3a507 (HEAD -> master) thirdindex
+4f07dfb secondindex
+5e3a377 firstcontact
+3f2677c firstindex
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/GitFolder (master)
+$ git reset 5e3a377                                                                                               //by default soft reset
+Unstaged changes after reset:                                                                             //this line means commit is deleted but changes are still there. can check in file. so i can add them back in proj.
+M       index.html
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/GitFolder (master)
+$ git log                                                                                                                 //see commits are deleted after the given commit id.
+commit 5e3a377135049eb681da48de2c97e070dc1bf88b (HEAD -> master)
+Author: Arun Sheoran <sheoranarun1101@gmail.com>
+Date:   Thu May 19 10:36:10 2022 +0530
+
+    firstcontact
+
+commit 3f2677c3178583618b9bc8517812fc05b1c143e6
+Author: Arun Sheoran <sheoranarun1101@gmail.com>
+Date:   Thu May 19 10:35:24 2022 +0530
+
+    firstindex
+	
+	
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/GitFolder (master)
+$ git commit -am "secondandthird"                                                                      //since changes reamined here we can add the changes back. as it is soft .
+[master a15ec7c] secondandthird
+ 1 file changed, 2 insertions(+)	
+ 
+ 
+ 
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/GitFolder (master)
+ $ git log --oneline
+a15ec7c (HEAD -> master) secondandthird                                                        //getting commit id as we will see hard reset in next eg.
+5e3a377 firstcontact
+3f2677c firstindex
+
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/GitFolder (master)
+$ git reset 5e3a377 --hard
+HEAD is now at 5e3a377 firstcontact
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/GitFolder (master)                     // we can see in log that after the given id all the commits are deleted and it was hard so the changed are also deleted .       head is at given commit id.
+$ git log
+commit 5e3a377135049eb681da48de2c97e070dc1bf88b (HEAD -> master)
+Author: Arun Sheoran <sheoranarun1101@gmail.com>
+Date:   Thu May 19 10:36:10 2022 +0530
+
+    firstcontact
+
+commit 3f2677c3178583618b9bc8517812fc05b1c143e6
+Author: Arun Sheoran <sheoranarun1101@gmail.com>
+Date:   Thu May 19 10:35:24 2022 +0530
+
+    firstindex
+	
+	//////////////////////////////////////               be careful while using this command as this can result in lose of code  ////////////////////////////////////////////
+	
+	
+============================================================================================================
+                                                               lecture 5 :    reverting commit    (use this very carefully as their can be conflict)
+															   
+															   (I am HAVING PROBLEM IN THIS SECTION )
+															   
+															   
+
+  changes introduced by commits can be revesed using revert command.
+
+  git revert <commit_id>           revert the commit and again commit the result
+
+  git revert -n <commit_id>          revert the commit but do not again commit the result . you have to explicitly commit the files.
+
+ git revert --abort                          abort the current revert operation.  
+ 
+ 
+ 
+ if there seems some change conflict then do appropriate thing
+ 
+ 
+ //git revert <commit_id>      will  create a new commit        the one which we are reverting will also be present
+==============================================================================================
+
+lecture 6 :           deleting commits from github.
+
+ how to use github( create repo -> commit you work )      see the commits.     take commit id from it 
+ go to command line and use this commmand
+ BE SURE THAT YOU ARE USING COMMIT ID WHERE YOU WANT YOUR HEAD TO BE PRESENT NOW
+
+   git reset <commit_id>
+   
+   
+   eg :  say we want to del c3 commit   (means we  want our head to be present at c2)   we will use commit id of c2 (124) our head will be reset at c2 and c3 will be deleted.
+   
+   c3        125
+   
+   c2        124
+   
+   c1       123
+   ==============================================================================================
+
+       lecture 7 : cherrypicking commits.        (in merging and rebasing all the commits/changes will be merged )
+	                                                                  but what if i don't want everythingto be merged  i want specific commits(features)
+	   
+	   
+	   here say if i want only m1 to be available in master branch.
+	   
+	   master              c1   ->  c2   ->  c3
+	                                         |   
+	   main                             m1         m2
+	   
+	   
+	   master             c1         c2            c3         m1 
+	   
+	   command:        git cherry-pick <commit_id>                         commit_id of commit which we want to add in branch.                commit_id canbe found in git log --oneline
+	   
+	   MAKE SURE : that you are in that branch where you want to add the commit                             (which was master in this case)
+	   
+	   eg of this
+
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/Folderprac
+$ git init
+Initialized empty Git repository in C:/Users/HP/Desktop/Folderprac/.git/
+
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/Folderprac (master)
+$ touch index.html
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/Folderprac (master)
+$ git add .
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/Folderprac (master)
+$ git commit -m "first"
+[master (root-commit) 5005d1c] first
+ 1 file changed, 1 insertion(+)     
+ create mode 100644 index.html      
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/Folderprac (master)
+$ git add .
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/Folderprac (master)
+$ git commit -m "second"
+[master d2b4453] second
+ 1 file changed, 1 insertion(+)
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/Folderprac (master)
+$ git checkout -b main
+Switched to a new branch 'main'
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/Folderprac (main)
+$ touch contact.html
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/Folderprac (main)
+$ git add .
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/Folderprac (main)
+$ git commit -m "first in contact"
+[main 552e7d8] first in contact
+ 1 file changed, 1 insertion(+)
+ create mode 100644 contact.html
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/Folderprac (main)
+$ git add .
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/Folderprac (main)
+$ git commit -m "second in contact"
+[main 1d861e4] second in contact
+ 1 file changed, 1 insertion(+)
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/Folderprac (main)
+$ git checkout master
+Switched to branch 'master'
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/Folderprac (master)
+$ git add .
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/Folderprac (master)
+$ git commit -m "third"
+[master b071fb2] third
+ 1 file changed, 1 insertion(+)
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/Folderprac (master)
+$ git checkout main
+Switched to branch 'main'
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/Folderprac (main)
+$ git log --oneline
+1d861e4 (HEAD -> main) second in contact
+552e7d8 first in contact
+d2b4453 second
+5005d1c first
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/Folderprac (main)
+$ git checkout master
+Switched to branch 'master'
+
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/Folderprac (master)
+$ git cherry-pick 552e7d8                                                                                                 //now m1 is available ie (contact.html with first commit)
+[master 4f24a5b] first in contact
+ Date: Thu May 19 12:23:41 2022 +0530
+ 1 file changed, 1 insertion(+)
+ create mode 100644 contact.html
+	   
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/Folderprac (master)                               //see it is working fine 
+$ git log --oneline
+4f24a5b (HEAD -> master) first in contact
+b071fb2 third
+d2b4453 second
+5005d1c first
+	   
+	   
+	   =====================================================================================
+	   ==============================================================================================
+	                   module 12 git hub
+					   
+==================================================================================================large
+        lecture 1 :   what is github	
+
+     it is a cloub based hosting service that let you manage Git repository.	 
+	 
+	  git                           github
+	  software                 service
+	  installed locally       cloud based
+	  cmdline interface     gui interface
+	 
+	 
+	   =====================================================================================
+  
+lecture 2: creating a github repository.
+
+  github repo:  is a repository on github website that will keep track of your git repository.(ie we can store our git repo).
+
+learned how to create a repository on github.
+
+	   =====================================================================================
+
+lecture 3: uploading existing proj on github  (all these commands should be applied)
+
+    git init
+   
+    git add .
+
+   git commit -m "commit message"                                      /// first 3 are for creating a git repo add and commit in local .(means git repo is initialized with our curr proj)
+
+   git remote add origin <remote_url>                                   remote_url is generated by github repository.   (send the code to remote_url ) on push         
+
+    git push origin master                                                        master denotes  the branch name on which you want to push your code on to. it could be anything.
+	
+	
+	   =====================================================================================
+	   lecture 4:     creating a remote repository.
+	   
+	   HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/samplefolder (master)
+$ git remote                                                                                                             this is our remote
+origin
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/samplefolder (master)
+$ git remote -v
+origin  https://github.com/sheoranarun/samplerepository.git (fetch)                       this link is used for fetch adn pull
+origin  https://github.com/sheoranarun/samplerepository.git (push) 
+
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/samplefolder (master)
+$ git remote add newOrigion https://github.com/sheoranarun/samplerepository.git                                 origion and newOrigin is just the name it can be anything.
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/samplefolder (master)
+$ git remote
+newOrigion
+origin
+
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/samplefolder (master)
+$ git remote -v
+newOrigion      https://github.com/sheoranarun/samplerepository.git (fetch)
+newOrigion      https://github.com/sheoranarun/samplerepository.git (push)
+origin  https://github.com/sheoranarun/samplerepository.git (fetch)
+origin  https://github.com/sheoranarun/samplerepository.git (push)
+
+
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/samplefolder (master)
+$ git push newOrigion master                                                                                               now we will use newOrigin as we have changed the name.
+Everything up-to-date
+
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/samplefolder (master)                             as origion does not appear to be (remote)git repository.
+$ git push origion master
+fatal: 'origion' does not appear to be a git repository
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+
+========================================================================================================
+ lecture 5 : cloning a repository
+ 
+ we can clone anyone's repo  and work locally on it.
+ 
+ green(code) 3 options :    1)download as zip   ( download and we get code and work on it locally)
+                                         
+
+										 2)other way is url     (copy url open some dir in which you want to work , open git bash             then type              :     $   git clone <url>
+										   we will have some files but we won't see teh exact files     because  we may not be in same dir . in gitbash go to the same directory.
+										   if you don't see them now :
+										    git checkout master
+											git checkout main            (ie in which branch the files are present ) you will see all teh avail files.
+										
+										3) if you don't want to download the whole repository then you can 
+										    Just  press   (   .   )      dot or period in keyboard in github . the repo will open in vscode similar editor.
+											
+===============================================================================================================================
+   lecture 6: forking a repo
+   
+   making a distinct seperate copy of source. (     and work on it and if everything works fine you can merge with central repository)
+   
+   how to collab with others 
+   h                                                                                              main git                                                                                                                           
+   o                                                                                             repository                                                                                                                                                                                                      
+   w                                                                                      fork  |       /|\      pull req                                                                                                         
+   t                                                                                                |        |                                                                                                              
+   o                                                                                              \|/      |                                                                                                               
+   c                                                                                              forked                                                                                                                         
+   o                                                                           ----------  repository   <----------                                                                                                                    
+   l                                                                            |                                                   |                                                                                            
+   l                                                            clone      \|/                                                 |         push                                                                                   
+   a                                                                                                                                                                                                                      
+   b                                                                    local repo           --------->       updated                                                                                                             
+   o                                                                                              update            local repo                                                                                                 
+   r                                                                                                                                                                                                                       
+   a                                                                                                                                                                                                                      
+   t                                                                                                                                                                                                                       
+   e                                                                                                                                                                                                                      
+   
+   how  we can fork a repository?   
+   eg vscode repo by microsoft ka eg. say i forked it cloned(and contributed added a feature) push in forked repo        and create a pull req if everthing is fine . and successful. vscode will have a feature implemented by me.
+   
+   =====================================================================================================================================================
+   
+   lecture 7:  fetching changes.
+   
+   say there is one    github repository which i am working on , but there are many people contributing in the same repo.
+   
+   if you push something form local to github repo then it is fine.
+   But 
+   say other person contributed great and added something on central (now central repo has something) 
+   which is not on my local repository .  now we have to fetch changes .
+   
+   This is called fetching changes.
+   How to do this?
+   1)  clone the whole repo  (everytime we want to fetch changes)(and delete the prev)
+         why do this because we have most changes only a few are not  . for them why you download whole repo again and agin.
+   
+   2)  the efficient way is    command        Git Fetch :                    (Git Merge) also need to be exec . ( to merge we need to specify which remote and which branch )
+  
+eg  $ git fetch
+     $git merge origion/master
+.                                                                                                                                                    (github)                                                                                                  
+.                 working                         staging                            local repo                                    remote repo                                                                                                                                                
+.                   dir                                area                                 |      /|\                                                |                                                                                                
+.                    /|\                                                                        |       |__________________________________|                                                                                             
+.                      |___________________________________________________|                       git fetch                                                                                                                              
+.                                                                                                                                                                                                                                                     
+.                                                                                                                                                                                                                                                     
+.       after git fetch chages will be   fetched in local repository not in working dir,   so we can not see those changes and work on it                                                                                                                                                                                                                                            
+.      so we need to merge it            so git merge need to be executed.                                                                                                                                                                                                                                    
+.                                                                                                                                                                                                                                                     
+.                                                                                                                                                                                                                                                     
+.   
+
+
+ 
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/samplefolder (master)
+$ git fetch
+remote: Enumerating objects: 7, done.
+remote: Counting objects: 100% (7/7), done.
+remote: Compressing objects: 100% (4/4), done.
+remote: Total 6 (delta 1), reused 0 (delta 0), pack-reused 0
+Unpacking objects: 100% (6/6), 1.25 KiB | 75.00 KiB/s, done.
+From https://github.com/sheoranarun/samplerepository
+ * [new branch]      main       -> origin/main
+   e23686e..f6624a4  master     -> origin/master
+
+ 
+ 
+ HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/samplefolder (master)
+$ git merge origin/master
+Updating e23686e..f6624a4
+Fast-forward
+ seven.cpp | 1 +
+ 1 file changed, 1 insertion(+)
+ create mode 100644 seven.cpp
+
+
+=======================================================================================================
+
+     lecture 8:        git fetch vs git pull
+	 
+	 git pull :     used to fetch the changes from github directly to a working directory.
+	 
+	 git fetch:   fetch and then we pull in working dir.
+	 
+	 
+	 git pull =   git fetch + git merge.
+	 
+	 
+	 .                                                                                                                                                    (github)                                                                                                  
+.                 working                         staging                            local repo                                    remote repo                                                                                                                                                
+.                   dir                                area                                  |      /|\                                                |   |                                                                                             
+.                 |   /|\                                                                        |        |________________________________  _|   |                                                                                         
+.                 |    |___________________________________________________|                       git fetch                          |                                                                                                    
+.                 |                               git merge                                                                                              |                                                                                      
+.                 |___ _______________________________________________________________________________________________ |                                                          
+                                                                   git pull 
+																   
+eg:
+
+
+HP@DESKTOP-BNABB6R MINGW64 ~/Desktop/samplefolder (master)
+$ git pull origin master                                                                                                       //rather than first fetch then merge we can do this.
+remote: Enumerating objects: 4, done.
+remote: Counting objects: 100% (4/4), done.
+remote: Compressing objects: 100% (2/2), done.
+remote: Total 3 (delta 1), reused 0 (delta 0), pack-reused 0
+Unpacking objects: 100% (3/3), 640 bytes | 30.00 KiB/s, done.
+From https://github.com/sheoranarun/samplerepository
+ * branch            master     -> FETCH_HEAD
+   f6624a4..4ae7235  master     -> origin/master
+Updating f6624a4..4ae7235
+Fast-forward
+ eight.txt | 1 +
+ 1 file changed, 1 insertion(+)
+ create mode 100644 eight.txt
+		
+=========================================================================================================
+       
+   lecture 9 :     creating a pull req
+
+   what is pull req.     
+    say there is a proj on github  lots of people are contributing on it.
+   since it  is  a big proj so it has lot of maintainers M1,M2,M3 etc.
+
+     so anything that is commited to this repository is reviewed by these maintainers of this repo.
+	 
+	 we don't have priv to directly commit . 
+	 if maintianer think the code is write only then he will merge.
+	 
+	so,  how can we contribute?
+	ans :    first we have to fork this in our own github account, now we have a forked copy , now eiterh we can clone, edit and push changes back
+	           for now we are going to make changes in forked repository only and then after making these changes/edit 
+			   we can send a pull request.
+			   the maintainer will get mail/notification regarding the changes done in pull request.
+			   if everything is fine he review and if everything if fine he can merge.
+			   
+			the maintainer can give us feedback if something is not right.
+
+how it works:
+ 
+we fork , we make changes and commit ,  (This branch is 1 commit ahead of sheoranarun:master.)     means this my own forked copy is ahead of its original repository. so want make a req (pull req) .  click on contribute button , open pull req option. click on it. (give description of what you did etc)  then create a pull req.  
+pull req will be in open status for now . 
+
+The maintainers will se option for merge pull req.
+
+================================================================================================================
+ lecture 10: merging a pull request.
+
+the maintainers will se option for merge pull req.
+
+they will see pull request 1   
+1 open 0 closed etc
+
+maintainer can see who created, what he commited etc (he is a first time contributre) and status of pull req,
+they have option (feature)  merge this pull req, 
+if everything is write then merge 
+else
+they have feedback secion ie comment type sect8ion        and close the pull req (and no longer it will be merged).
+
+if decide to merge ,  github ask for title 
+if press confirm merge .
+they will see 
+sheoranarun merged commit 3558eee into sheoranarun:master       (samajh ja)
+
+status changed to merged. 
+there are 0 open pull req 1 closed pull req.
+
+======================================================================================================
+lecture 10 : creating issue on github
+
+what are issues?           if you have some bug , or you want to add some functionalities in your open source proj and want others to do that work for you.
+                                     you have to list the task.
+									 the list of task is called issues.
+									
+you can create and issue on github and other developers can see the issue on this repo , if they find something similar to their interest . they can contribute to that.
+
+GO TO A REPOSITORY           CLICK ON ISSUES      .
+
+while creating isssue . apply labels.
+
+===============================================================================================================
+Lecture 11: GITHUB PAGES
+
+ -deploy static website:                      those website who don't need server to run (html,css,js) only
+ -share working demo of you code
+ -showcase your  portfolio
+ 
+ deploy using github pages.
+ the html file should be named as index.html(main file name should be index.html ) it is requirement.
+ 
+ 
+ setting -> pages ->(select a source ie branch  of proj.) click on save.
+your site is ready to be published at        <url> 
+
+this url is working demo of code.                               url        is        yourusername.github.io/repositoryname
+
+
+if you want custom domain you have to purchase and shit.
+
+
+=====================================================================================================
+lecture 12 : exploring network graphs on github.
+
+
+suppose you are working on a new open source proj. and want to collaborate. but that has some work already . you want to get overview. 
+its not possible to read each line of code.
+stages of proj. 
+in which step proj was taken out and have an overview.
+
+how can we do that .
+
+eg :
+facebook/react
+
+there is and insights button:     
+it has details.
+we can see all the pull req . 
+reading them one by one is not feasible
+we can see this in a form of gui (graph)
+
+network option 
+it will load graph data.
+
+
+lines represent branches.
+dots represent commits (hover on them see name and commit messages)
+and lots of details.
+
+ITS A GREAT WAY OF HAVING AN OVERVIEW OF A PROJ AND COLLABORATE ON IT.
